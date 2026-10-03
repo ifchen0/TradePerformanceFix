@@ -1,0 +1,24 @@
+Removes a long freeze when a trade is set up in a colony with many items: opening the trade window, and every trade made by [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1440321094]Auto Seller[/url].
+
+[h2]Building the trade list[/h2]When RimWorld builds the list of tradeable items, it compares every item with every entry already in the list ([i]TransferableUtility.TradeableMatching[/i]). Before each comparison it also checks whether the trader deals in that entry's item ([i]Tradeable.TraderWillTrade[/i], a loop over all of the trader's stock rules), even when the two items are of different types and can never be merged.
+
+[b]Cause:[/b] With a few thousand item stacks this adds up to hundreds of thousands of checks. In my colony (about 3,000 stacks) building the list took about 5 seconds.
+
+[b]Fix:[/b] While the list is being built, entries are indexed by item type. Two items can only be merged if they are the same type ([i]TransferAsOne[/i] rejects different defs first), so only entries of the same type are compared, in the original order. The resulting list is exactly the same. Building the list now takes about 0.2 seconds.
+
+[h2]Auto Seller: second rebuild after every trade[/h2][b]Cause:[/b] After executing its trade, Auto Seller calls [i]TradeDeal.Reset()[/i] the way the trade window does, which builds the whole list again for a window that does not exist. Nothing uses that list afterwards.
+
+[b]Fix:[/b] The list is just emptied instead. This part only applies when Auto Seller is loaded.
+
+[h2]Result[/h2]Measured in my colony, one Auto Seller trade:
+[list]
+[*]Before: 11.0 seconds (two list builds of about 5.4 seconds each)
+[*]After: 0.3 seconds
+[/list]
+[h2]Notes[/h2][list]
+[*]Safe to add to or remove from an existing save.
+[*]Works with or without Auto Seller.
+[*]Load after Auto Seller if you use it.
+[/list]
+[hr][/hr]
+This mod was developed with the help of AI coding tools (Claude Code). Full source code is included in the Source folder for review.
