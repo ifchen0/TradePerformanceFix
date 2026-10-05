@@ -21,4 +21,4 @@ Removes a long freeze when a trade is set up in a colony with many items: openin
 [*]Load after Auto Seller if you use it.
 [/list]
 [hr][/hr]
-This mod was developed with the help of AI coding tools (Claude Code). Full source code is included in the Source folder for review.
+This mod was developed with the help of AI coding tools (Claude Code). Full source code is included in the Source folder and on [url=https://github.com/ifchen0/TradePerformanceFix]GitHub[/url] for review.
