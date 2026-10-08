@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
-  <name>Trade Performance Fix</name>
+  <name>[DEPRECATED] Trade Performance Fix</name>
   <author>ifchen0</author>
   <packageId>ifchen0.tradeperformancefix</packageId>
   <url>https://github.com/ifchen0/TradePerformanceFix</url>
   <supportedVersions><li>1.6</li></supportedVersions>
-  <description>Removes a long freeze when a trade is set up in a colony with many items: opening the trade window, and every trade made by Auto Seller.
+  <description>Deprecated: this mod is now part of Vanilla Tune-Up: Fixes &amp; Tweaks and will not be updated further. Please switch to that mod.
+
+Removes a long freeze when a trade is set up in a colony with many items: opening the trade window, and every trade made by Auto Seller.
 
 Cause: when RimWorld builds the list of tradeable items, it compares every item with every entry already in the list, and for each comparison it first checks whether the trader deals in that entry's item (a loop over all of the trader's stock rules). With a few thousand items this is hundreds of thousands of checks, which took about 5 seconds per trade in my colony.
 
